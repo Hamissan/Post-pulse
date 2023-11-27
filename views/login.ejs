@@ -1,0 +1,51 @@
+<!-- login.ejs -->
+<%- include('partials/header') %>
+
+<style>
+  body {
+    background-color: #f8f9fa;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .card {
+    width: 80%;
+    max-width: 400px;
+    margin-top: 50px;
+  }
+</style>
+
+<body class="login-page">
+    <main>
+ <div class="login-block">
+        <!-- <img src="http://scanfcode.com/wp-content/uploads/2017/09/cropped-Untitled-1.png" alt="Scanfcode"> -->
+        <h1>Log into your account</h1>
+        <form action="/login" method="POST">
+          <div class="form-group">
+        <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-user ti-user"></i></span>
+        <input type="text" class="form-control" id="username" name="username" required  placeholder="Username">
+      </div></div>
+      <hr class="hr-xs">
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-lock ti-unlock"></i></span><span></span>
+        <input type="password" class="form-control" id="password" name="password" required placeholder="Choose a password">
+      </div>
+    </div>
+      <button type="submit" class="btn btn-primary btn-block">Login</button><br>
+<!-- GOOGLE BUTTON -->
+      <button type="button" class="login-with-google-btn" >
+        Continue with Google
+      </button>
+    </form>
+  </div>
+</div>
+</div>
+
+<%- include('partials/footer') %>
