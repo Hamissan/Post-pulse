@@ -1,41 +1,31 @@
-<!-- posts.ejs -->
+<!-- views/posts.ejs -->
 
-<%- include('partials/header', { currentUser: currentUser }) %>
+<%- include('partials/header') %>
 
-<div class="container">
-  <h1 class="text-center">All Posts</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Posts</h1>
+  <% if (currentUser && currentUser.username) { %>
+    <p>Welcome, <%= currentUser.username %>!</p>
+    <a href="/submit" class="btn btn-primary">Write a Post</a>
+    <hr>
+  <% } %>
 
-  <% posts.forEach(function(post){ %>
-    <div class="card mb-3">
-      <div class="card-body">
-        <h5 class="card-title"><%= post.title %></h5>
-        <p class="card-text"><%= post.content %></p>
-
-        <!-- Edit Button -->
-        <a href="/edit/<%= post._id %>" class="btn btn-primary">Edit</a>
-
-        <!-- Delete Button -->
-        <form action="/delete/<%= post._id %>" method="post" style="display: inline-block;">
-          <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
+  <% if (posts.length > 0) { %>
+    <% posts.forEach(function(post) { %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title"><%= post.title %></h5>
+          <p class="card-text"><%= post.content %></p>
+          <p class="card-text">Author: <%= currentUser.username %></p>
+          <p class="card-text">Date: <%= post.date.toLocaleString() %></p>
+          <a href="/edit/<%= post._id %>" class="btn btn-warning">Edit</a>
+          <a href="/delete/<%= post._id %>" class="btn btn-danger">Delete</a>
+        </div>
       </div>
-    </div>
-  <% }) %>
-
-  <!-- Text area for new post -->
-  <form action="/submit" method="post">
-    <div class="form-group">
-      <label for="newTitle">Title:</label>
-      <input type="text" class="form-control" id="newTitle" name="title" required>
-    </div>
-
-    <div class="form-group">
-      <label for="newContent">Content:</label>
-      <textarea class="form-control" id="newContent" name="content" rows="4" required></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-success">Submit</button>
-  </form>
+    <% }); %>
+  <% } else { %>
+    <p>No posts yet.</p>
+  <% } %>
 </div>
 
 <%- include('partials/footer') %>

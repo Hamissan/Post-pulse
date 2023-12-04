@@ -1,0 +1,14 @@
+<!-- views/confirm-delete.ejs -->
+
+<%- include('partials/header') %>
+
+<div class="container mt-5">
+  <h1 class="mb-4">Confirm Delete</h1>
+  <p>Are you sure you want to delete the post?</p>
+  <form method="post" action="/delete/<%= post._id %>">
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="/posts" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+
+<%- include('partials/footer') %>

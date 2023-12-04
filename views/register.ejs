@@ -1,7 +1,7 @@
 <!-- register.ejs -->
 <%- include('partials/header') %>
 
-<style>
+<!-- <style>
   body {
     background-color: #f8f9fa;
   }
@@ -18,16 +18,17 @@
     max-width: 400px;
     margin-top: 50px;
   }
-</style>
+</style> -->
 
 <body class="login-page">
     <main>
+      <div class="login-block">
  <div class="login-block">
         <form action="/register" method="POST">
           <div class="form-group">
         <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-user ti-user"></i></span>
-        <input type="text" class="form-control" id="username" name="username" required  placeholder="Username">
+        <input type="text" class="form-control" id="username" name="username" required  placeholder="username/email">
       </div></div>
       <hr class="hr-xs">
       <div class="form-group">
@@ -38,9 +39,9 @@
     </div>
       <button type="submit" class="btn btn-primary btn-block">Register</button><br>
 <!-- GOOGLE BUTTON -->
-      <button type="button" class="login-with-google-btn" href="/auth/google" role="button" >
+      <!-- <button type="button" class="login-with-google-btn" href="/auth/google" role="button" >
         Sign up with Google
-      </button>
+      </button> -->
     </form>
   </div>
 </div>

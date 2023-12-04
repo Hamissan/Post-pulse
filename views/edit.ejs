@@ -1,28 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- views/edit.ejs -->
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Post</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
+<%- include('partials/header') %>
 
-<body>
-  <div class="container">
-    <h1 class="text-center">Edit Post</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">Edit Your Post</h1>
 
-    <form action="/edit/<%= post._id %>" method="post">
-      <div class="form-group">
-        <label for="content">Post Content (Max 250 characters):</label>
-        <textarea class="form-control" id="content" name="content" rows="4" maxlength="250" required><%= post.content %></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary">Update Post</button>
-    </form>
-    
-    <a href="/posts" class="btn btn-secondary mt-3">Cancel</a>
-  </div>
-</body>
+  <form action="/edit/<%= post._id %>" method="post">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" name="title" value="<%= post.title %>" required>
+    </div>
+    <div class="form-group">
+      <label for="content">Content</label>
+      <textarea class="form-control" id="content" name="content" rows="4" required><%= post.content %></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a href="/posts" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
 
-</html>
+<%- include('partials/footer') %>

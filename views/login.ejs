@@ -22,6 +22,9 @@
 
 <body class="login-page">
     <main>
+      <% if (messages.error) { %>
+        <div class="error"><%= messages.error %></div>
+      <% } %>
  <div class="login-block">
         <!-- <img src="http://scanfcode.com/wp-content/uploads/2017/09/cropped-Untitled-1.png" alt="Scanfcode"> -->
         <h1>Log into your account</h1>
@@ -40,9 +43,9 @@
     </div>
       <button type="submit" class="btn btn-primary btn-block">Login</button><br>
 <!-- GOOGLE BUTTON -->
-      <button type="button" class="login-with-google-btn" >
+      <!-- <button type="button" class="login-with-google-btn" >
         Continue with Google
-      </button>
+      </button> -->
     </form>
   </div>
 </div>

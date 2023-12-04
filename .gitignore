@@ -1,0 +1,55 @@
+# Node.js
+node_modules/
+
+# Environment files
+.env
+
+# macOS
+.DS_Store
+
+# Visual Studio Code
+.vscode/
+
+# Log files
+*.log
+
+# Compiled binaries
+*.class
+*.o
+*.pyc
+*.exe
+
+# Dependency directories
+bower_components/
+jspm_packages/
+
+# Compiled Java bytecode
+*.class
+
+# Compiled Python bytecode
+__pycache__/
+
+# Compiled Ruby bytecode
+*.rbc
+*.rbo
+
+# Compiled JavaScript files
+*.js
+
+# Compiled TypeScript files
+*.ts
+*.map
+
+# Package files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Miscellaneous
+*.bak
+*.swp
+Thumbs.db
+desktop.ini
