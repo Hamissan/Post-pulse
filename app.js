@@ -15,13 +15,13 @@ const app = express();
 
 // Generate a random secret key for session management
 const sessionSecret = secureRandomString({ length: 32, characters: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' });
-console.log(sessionSecret);
+// console.log(sessionSecret);
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(session({
-  secret: process.env.SECRET_KEY, 
+  secret: process.env.SESSION_SECRET, 
   resave: false,
   saveUninitialized: false
 }));
