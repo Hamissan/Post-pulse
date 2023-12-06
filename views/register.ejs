@@ -1,34 +1,18 @@
 <!-- register.ejs -->
 <%- include('partials/header') %>
 
-<!-- <style>
-  body {
-    background-color: #f8f9fa;
-  }
-
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-
-  .card {
-    width: 80%;
-    max-width: 400px;
-    margin-top: 50px;
-  }
-</style> -->
-
 <body class="login-page">
     <main>
+      <% if (messages.error) { %>
+        <div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i><%= messages.error %></div>
+      <% } %>
       <div class="login-block">
  <div class="login-block">
         <form action="/register" method="POST">
           <div class="form-group">
         <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-user ti-user"></i></span>
-        <input type="text" class="form-control" id="username" name="username" required  placeholder="username/email">
+        <input type="text" class="form-control" id="username" name="username" required  placeholder="Username">
       </div></div>
       <hr class="hr-xs">
       <div class="form-group">
@@ -36,7 +20,7 @@
           <span class="input-group-addon"><i class="fa fa-lock ti-unlock"></i></span><span></span>
         <input type="password" class="form-control" id="password" name="password" required placeholder="Choose a password">
       </div>
-    </div>
+    </div> 
       <button type="submit" class="btn btn-primary btn-block">Register</button><br>
 <!-- GOOGLE BUTTON -->
       <!-- <button type="button" class="login-with-google-btn" href="/auth/google" role="button" >
@@ -49,6 +33,7 @@
 <div class="login-links">
   <p class="text-center">Already have an account? <a class="txt-brand" href="/login">Login</a></p>
 </div>
-</main>
+<!-- </main></body> -->
 
 <%- include('partials/footer') %>
+

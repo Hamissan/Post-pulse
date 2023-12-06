@@ -138,6 +138,14 @@ app.post("/submit", function (req, res) {
     
     }); 
 
+    // Check if content exceeds the character limit
+    // if (newPost.content.length > 250) {
+    //   req.flash("error", "Post content exceeds the maximum limit of 250 characters.");
+    //   res.redirect("/submit");
+    //   return;
+    // }
+
+
     newPost.save()
       .then(() => {
         req.user.posts = req.user.posts || [];
@@ -162,7 +170,10 @@ app.post("/submit", function (req, res) {
 app.get("/posts", async function (req, res) {
   try {
     if (req.isAuthenticated()) {
-      const posts = await Post.find({ author: req.user._id });
+
+      // In the below line of code, if i remove { author: req.user._id }, all the posts will show with their respective author
+      // The ".populate" method 
+      const posts = await Post.find({ author: req.user._id }).populate('author');
       res.render("posts", { posts, currentUser: req.user });
     } else {
       req.flash("error", "Please login to view posts.");

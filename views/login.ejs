@@ -23,7 +23,9 @@
 <body class="login-page">
     <main>
       <% if (messages.error) { %>
-        <div class="error"><%= messages.error %></div>
+        <div class="alert alert-danger" role="alert">
+          <i class="fas fa-exclamation-circle"></i>
+          <%= messages.error %></div>
       <% } %>
  <div class="login-block">
         <!-- <img src="http://scanfcode.com/wp-content/uploads/2017/09/cropped-Untitled-1.png" alt="Scanfcode"> -->
