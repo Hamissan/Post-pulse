@@ -1,21 +1,49 @@
-<!-- views/submit.ejs -->
-
 <%- include('partials/header') %>
 
-<div class="container mt-5">
-  <h1 class="mb-4">Submit a Post</h1>
-  <form method="post" action="/submit">
-    <div class="form-group">
-      <label for="title">Title:</label>
-      <input type="text" class="form-control" id="title" name="title" required>
-    </div>
-    <div class="form-group">
-      <label for="content">Content:</label>
-      <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-</div>
+<style>
+  .display-4 {
+    color: #3498db;
+  }
+</style>
 
-<%- include('partials/footer') %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1 class="display-4 text-center mb-4">Create your Post</h1>
+      
+      <form method="post" action="/submit">
+        <div class="form-group">
+          <label for="title"><strong>Title:</strong></label>
+          <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="content"><strong>Content:</strong></label>
+          <textarea class="form-control" id="content" name="content" rows="5" maxlength="500" oninput="updateCharCount()" required placeholder="Share your thoughts,ideas and experiences..."></textarea>
+          <small id="charCount" class="form-text text-muted">Character count: 0<span>/250</span></small>
+        </div>        
+        
+        <!-- <div class="form-group">
+          <label for="tags"><strong>Tags (comma-separated):</strong></label>
+          <input type="text" class="form-control" id="tags" name="tags" placeholder="e.g., technology, travel, food">
+        </div> -->
+        
+        <div class="text-left">
+          <button type="submit" class="btn btn-primary btn-lg">Submit Post</button>
+          <a href="/posts" class="btn btn-outline-primary btn-lg ml-2">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  function updateCharCount() {
+    const contentTextarea = document.getElementById('content');
+    const charCount = document.getElementById('charCount');
+    charCount.textContent = `Character count: ${contentTextarea.value.length}`;
+  }
+</script>
+
+
+
 

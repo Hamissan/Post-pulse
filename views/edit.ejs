@@ -2,21 +2,131 @@
 
 <%- include('partials/header') %>
 
+<style>
+  body {
+    background-color: #f8f9fa; /* Adjust to your app's background color */
+  }
+
+  .container {
+    margin-top: 50px;
+  }
+
+  h1 {
+    color: #3498db; /* Adjust to your app's brand color */
+  }
+
+  label {
+    color: #555;
+  }
+
+  .form-control {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+
+  .btn-primary {
+    background-color: #3498db; /* Adjust to your app's brand color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .btn-primary:hover {
+    background-color: #2979c7; /* Adjusted bluish shade on hover */
+  }
+
+  .btn-outline-dark {
+    color: #333;
+    border: 1px solid #333;
+    border-radius: 5px;
+  }
+
+  /* Modal Styling */
+  .modal-confirm {
+    color: #333;
+  }
+
+  .modal-confirm .modal-header,
+  .modal-confirm .modal-body,
+  .modal-confirm .modal-footer {
+    padding: 20px;
+  }
+
+  .modal-confirm .modal-content {
+    border-radius: 5px;
+  }
+
+  .modal-confirm .modal-header {
+    background-color: #3498db; /* Adjust to your app's brand color */
+    border-bottom: none;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .modal-confirm .modal-title {
+    color: #fff;
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+
+  .modal-confirm .modal-footer {
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px 15px 25px;
+  }
+
+  .modal-confirm .btn {
+    color: #fff;
+    border-radius: 4px;
+    background: #3498db; /* Adjust to your app's brand color */
+    text-decoration: none;
+    transition: all 0.4s;
+    line-height: normal;
+  }
+
+  .modal-confirm .btn:hover,
+  .modal-confirm .btn:focus {
+    background: #2979c7; /* Adjusted bluish shade on hover */
+    outline: none;
+  }
+</style>
+
 <div class="container mt-5">
   <h1 class="mb-4">Edit Your Post</h1>
 
   <form action="/edit/<%= post._id %>" method="post">
     <div class="form-group">
-      <label for="title">Title</label>
+      <label for="title"><strong>Title</strong></label>
       <input type="text" class="form-control" id="title" name="title" value="<%= post.title %>" required>
     </div>
     <div class="form-group">
-      <label for="content">Content</label>
+      <label for="content"><strong>Content</strong></label>
       <textarea class="form-control" id="content" name="content" rows="4" required><%= post.content %></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Save Changes</button>
-    <a href="/posts" class="btn btn-secondary">Cancel</a>
+    <a href="#" class="btn btn-outline-dark" data-toggle="modal" data-target="#cancelModal">Cancel</a>
   </form>
-</div>
 
-<%- include('partials/footer') %>
+ <!-- Cancel Modal -->
+<div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-confirm">
+      <div class="modal-header">
+        <div class="icon-box">
+          <i class="fas fa-times-circle"></i>
+        </div>
+        <h4 class="modal-title">Are you sure?</h4>
+      </div>
+      <div class="modal-body">
+        <p>Do you really want to cancel the edit?</p>
+      </div>
+      <div class="modal-footer">
+        <a href="/posts" class="btn btn-danger"><i class="fas fa-times"></i> Cancel Edit</a>
+        <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fas fa-check"></i> Continue Editing</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,32 +1,124 @@
-<!-- views/posts.ejs -->
-
 <%- include('partials/header') %>
+<style>
+  /* Style for the "Write a Post" button */
+  .btn-write-post {
+    background-color: #3498db; /* Replace with your app's brand color */
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
 
-<div class="container mt-5">
-  <h1 class="mb-4">Posts</h1>
+  .btn-write-post:hover {
+    background-color: #2979c7; /* Adjusted bluish shade on hover */
+    transform: scale(1.05);
+  }
+
+  /* Style for the "Edit" and "Delete" buttons */
+  .btn-edit,
+  .btn-delete {
+    margin-right: -5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+
+  .btn-edit {
+    background-color: #28a745; /* Green color for Edit button */
+    color: #fff;
+    border: none;
+  }
+
+  .btn-delete {
+    background-color: #dc3545; /* Red color for Delete button */
+    color: #fff;
+    border: none;
+  }
+
+  /* Hover effect for Edit and Delete buttons */
+  .btn-edit:hover,
+  .btn-delete:hover {
+    transform: scale(1.05);
+  }
+
+  /* Additional styling for post cards and container */
+  .container {
+    margin-top: 50px;
+  }
+
+  .display-4 {
+    color: #3498db;
+  }
+
+  .lead {
+    color: #666;
+  }
+
+  .post-button {
+    margin-top: 20px;
+  }
+
+  .post-card {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-title {
+    color: #3498db;
+  }
+
+  .btn-info,
+  .btn-danger {
+    color: #fff;
+  }
+  /* Adjusted positioning for Edit and Delete buttons */
+  .btn-edit,
+  .btn-delete {
+    margin-right: -5px; /* Negative margin */}
+    .btn-like {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+  }
+
+  .btn-like:hover {
+    background-color: #c0392b;
+  }
+</style>
+
+<div class="container">
+  <h1 class="display-4 text-center mb-4">Explore Posts</h1>
+
   <% if (currentUser && currentUser.username) { %>
-    <p>Welcome, <%= currentUser.username %>!</p>
-    <a href="/submit" class="btn btn-primary">Write a Post</a>
-    <hr>
+    <p class="lead text-center">Welcome, <%= currentUser.username %>! Ready to share your thoughts?</p>
+    <a href="/submit" class="btn btn-primary btn-lg d-block mx-auto post-button btn-write-post">Write a Post</a>
+    <hr class="my-4">
+  <% } else { %>
+    <p class="lead text-center">Discover a world of ideas and insights shared by our community.</p>
   <% } %>
 
   <% if (posts.length > 0) { %>
     <% posts.forEach(function(post) { %>
-      <div class="card mb-3">
+      <div class="card mb-4 post-card">
         <div class="card-body">
-          <h5 class="card-title"><%= post.title %></h5>
-          <p class="card-text"><%= post.content %></p>
-          <p class="card-text">Author: <%= post.author.username %></p>
-          <!-- <p class="card-text">Author: <%= currentUser.username %></p> -->
-          <p class="card-text">Date: <%= post.date.toLocaleString() %></p>
-          <a href="/edit/<%= post._id %>" class="btn btn-warning">Edit</a>
-          <a href="/delete/<%= post._id %>" class="btn btn-danger">Delete</a>
+          <h5 class="card-title mb-3"><%= post.title %></h5>
+          <p class="card-text mb-4"><%= post.content %></p>
+          <p class="card-text text-muted small">Author: <%= post.author.username %></p>
+          <p class="card-text text-muted small">Posted on: <%= post.date.toLocaleString() %></p>
+          <div class="text-left">
+            <a href="/edit/<%= post._id %>" class="btn btn-info btn-sm mx-2 btn-edit"><i class="fas fa-edit"></i> Edit</a>
+            <a href="/delete/<%= post._id %>" class="btn btn-danger btn-sm mx-2 btn-delete"><i class="fas fa-trash-alt"></i> Delete</a>
+            
+          </div>
         </div>
       </div>
     <% }); %>
   <% } else { %>
-    <p>No posts yet.</p>
+    <p class="text-center">No posts yet.</p>
   <% } %>
 </div>
-
-<%- include('partials/footer') %>

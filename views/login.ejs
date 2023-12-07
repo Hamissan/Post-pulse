@@ -22,11 +22,19 @@
 
 <body class="login-page">
     <main>
+      <!-- <% if (messages.success) { %>
+        <div class="alert alert-success" role="alert">
+          <%= messages.success %>
+        </div>
+      <% } %> -->
+      
       <% if (messages.error) { %>
         <div class="alert alert-danger" role="alert">
           <i class="fas fa-exclamation-circle"></i>
-          <%= messages.error %></div>
+          <%= messages.error %>
+        </div>
       <% } %>
+      
  <div class="login-block">
         <!-- <img src="http://scanfcode.com/wp-content/uploads/2017/09/cropped-Untitled-1.png" alt="Scanfcode"> -->
         <h1>Log into your account</h1>
@@ -40,7 +48,7 @@
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-lock ti-unlock"></i></span><span></span>
-        <input type="password" class="form-control" id="password" name="password" required placeholder="Choose a password">
+        <input type="password" class="form-control" id="password" name="password" required placeholder="Enter password">
       </div>
     </div>
       <button type="submit" class="btn btn-primary btn-block">Login</button><br>
@@ -53,4 +61,3 @@
 </div>
 </div>
 
-<%- include('partials/footer') %>

@@ -172,7 +172,8 @@ app.get("/posts", async function (req, res) {
     if (req.isAuthenticated()) {
 
       // In the below line of code, if i remove { author: req.user._id }, all the posts will show with their respective author
-      // The ".populate" method 
+      // The ".populate" method  specifies the authenticated author of the respective post
+
       const posts = await Post.find({ author: req.user._id }).populate('author');
       res.render("posts", { posts, currentUser: req.user });
     } else {
@@ -185,9 +186,6 @@ app.get("/posts", async function (req, res) {
     res.status(500).send("Internal Server Error");
   }
 });
-
-// Additional routes for editing and deleting posts...
-// ...
 
 // EDIT POST
 app.get("/edit/:postId", async function (req, res) {

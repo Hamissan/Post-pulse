@@ -3,11 +3,20 @@
 
 <body class="login-page">
     <main>
-      <% if (messages.error) { %>
-        <div class="alert alert-danger" role="alert"><i class="fas fa-exclamation-circle"></i><%= messages.error %></div>
+      <% if (messages.success) { %>
+        <div class="alert alert-success" role="alert">
+          <%= messages.success %>
+        </div>
       <% } %>
+      
+      <% if (messages.error) { %>
+        <div class="alert alert-danger" role="alert">
+          <i class="fas fa-exclamation-circle"></i>
+          <%= messages.error %>
+        </div>
+      <% } %>
+      
       <div class="login-block">
- <div class="login-block">
         <form action="/register" method="POST">
           <div class="form-group">
         <div class="input-group">
@@ -21,6 +30,7 @@
         <input type="password" class="form-control" id="password" name="password" required placeholder="Choose a password">
       </div>
     </div> 
+    <hr class="hr-xs">
       <button type="submit" class="btn btn-primary btn-block">Register</button><br>
 <!-- GOOGLE BUTTON -->
       <!-- <button type="button" class="login-with-google-btn" href="/auth/google" role="button" >
@@ -33,7 +43,6 @@
 <div class="login-links">
   <p class="text-center">Already have an account? <a class="txt-brand" href="/login">Login</a></p>
 </div>
-<!-- </main></body> -->
 
-<%- include('partials/footer') %>
+
 
