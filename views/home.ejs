@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Postpulse</title>
+  <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -119,12 +121,13 @@
 <body>
 
   
-  <%- include('partials/header') %>
+  <%- include('partials/header', { currentPage: 'home' }) %>
+
 
   <div class="jumbotron">
     <div class="container">
       <h1 class="display-3"><strong>Postpulse</strong></h1>
-      <p class="lead">A simple web app for posting and viewing content. Explore, Share, Connect!</p>
+      <p class="lead">Craft your private online sanctuary, exclusively for your creations. Share moments and reflections for your eyes only.</p>
       <a class="btn btn-primary btn-lg" href="/login" role="button" style="background-color:#3498db">Login</a>
       <a class="btn btn-success btn-lg" href="/register" role="button" style="background-color: #2ecc;">Register</a>
     </div>

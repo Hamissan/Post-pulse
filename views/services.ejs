@@ -1,0 +1,229 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Postpulse</title>
+  <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon">
+
+
+
+<%- include('partials/header', { currentPage: 'services' }) %>
+
+<style>
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+  }
+
+  .hero-section {
+    background: linear-gradient(to right, #3498db, #2ecc71);
+    color: #fff;
+    text-align: center;
+    padding: 100px 0;
+  }
+
+  .hero-section h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  .hero-section p {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+
+  .services-section {
+    padding: 80px 0;
+    background-color: #fff;
+  }
+
+  .service-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin-bottom: 30px;
+  }
+
+  .service-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .service-icon {
+    font-size: 48px;
+    color: #3498db;
+  }
+
+  .service-card-content {
+    padding: 20px;
+  }
+
+  .service-card h3 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  .service-card p {
+    font-size: 16px;
+    color: #555;
+  }
+
+  .interactive-section {
+    padding: 80px 0;
+    background-color: #f5f5f5;
+  }
+
+  .interactive-content {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .interactive-icon {
+    font-size: 48px;
+    color: #3498db;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .interactive-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .interactive-description {
+    font-size: 16px;
+    color: #555;
+  }
+
+  .interactive-icon:hover {
+    transform: scale(1.1);
+  }
+
+  .cta-section {
+    background-color: #3498db;
+    color: #fff;
+    text-align: center;
+    padding: 100px 0;
+  }
+
+  .cta-section h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  .cta-section p {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+
+  .cta-button {
+    font-size: 18px;
+    padding: 12px 24px;
+    background-color: #2ecc71;
+    border-color: #2ecc71;
+    color: #fff;
+  }
+
+  .cta-button:hover {
+    background-color: #27ae60;
+    border-color: #27ae60;
+  }
+
+</style>
+</head>
+
+<body>
+
+  <div class="hero-section">
+    <div class="container">
+      <h1>Discover Our Creative Services</h1>
+      <p>Welcome to Post Pulse Services, where creativity meets innovation. Explore our diverse range of services designed to elevate your digital experience.</p>
+    </div>
+  </div>
+
+  <div class="services-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="service-card">
+            <div class="service-card-content">
+              <i class="fas fa-paint-brush service-icon"></i>
+              <h3>Custom Creations</h3>
+              <p>Explore personalized and tailor-made creations that resonate with your unique style.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+          <div class="service-card">
+            <div class="service-card-content">
+              <i class="fas fa-code service-icon"></i>
+              <h3>Tech Innovations</h3>
+              <p>Stay updated with the latest technological advancements and innovations in the digital world.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+          <div class="service-card">
+            <div class="service-card-content">
+              <i class="fas fa-lightbulb service-icon"></i>
+              <h3>Creative Insights</h3>
+              <p>Gain valuable insights into the creative process and get inspired for your next project.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="interactive-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="interactive-content">
+            <i class="fas fa-cogs interactive-icon"></i>
+            <h3 class="interactive-title">Interactive Elements</h3>
+            <p class="interactive-description">Experience a variety of interactive features and engage with our content like never before.</p>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+          <div class="interactive-content">
+            <i class="fas fa-chart-line interactive-icon"></i>
+            <h3 class="interactive-title">Data Analytics</h3>
+            <p class="interactive-description">Utilize powerful analytics tools to track and measure the impact of your creative projects.</p>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+          <div class="interactive-content">
+            <i class="fas fa-comments interactive-icon"></i>
+            <h3 class="interactive-title">Community Engagement</h3>
+            <p class="interactive-description">Join discussions, share insights, and connect with a vibrant community of creators.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <div class="container">
+      <h2>Ready to Transform Your Digital Experience?</h2>
+      <p>Explore our services and unlock the potential of creativity. Join us on this exciting journey!</p>
+      <a href="/register" class="btn btn-primary cta-button">Get Started</a>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and Popper.js scripts -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- Font Awesome for icons -->
+  <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

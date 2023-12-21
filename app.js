@@ -10,6 +10,7 @@ const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 const flash = require("express-flash");
 const secureRandomString = require('secure-random-string');
+const path = require('path');
 
 const app = express();
 
@@ -17,9 +18,12 @@ const app = express();
 const sessionSecret = secureRandomString({ length: 32, characters: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' });
 // console.log(sessionSecret);
 
+// Set the views folder
+app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
+// Serve static files from the public folder
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: process.env.SESSION_SECRET, 
   resave: false,
@@ -78,9 +82,90 @@ const postSchema = new mongoose.Schema({
 
 const Post = mongoose.model("Post", postSchema);
 
+// Discussion thread schema
+
+// const discussionThreadSchema = new mongoose.Schema({
+//   title: String,
+//   content: String,
+//   author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+//   date: { type: Date, default: Date.now }
+// });
+
+// const DiscussionThread = mongoose.model("DiscussionThread", discussionThreadSchema);
+
+
+
+// ROUTES
+
+// HOME
+
 app.get("/", function (req, res) {
   res.render("home", { currentUser: req.user });
 });
+
+// NAV BAR ITEMS
+
+app.get('/services', (req, res) => {
+  const currentUser = req.user; // Assuming you store the user in the 'user' property of the request
+  res.render('services', { currentUser, currentPage: 'services' });
+});
+
+app.get("/rewards", (req, res) =>{
+  const currentUser= req.user;
+  res.render("rewards", { currentUser, currentPage: 'rewards' } );
+});
+app.get("/community", (req, res) =>{
+  const currentUser=req.user;
+  res.render("community", {currentUser, currentPage: 'community'});
+});
+app.get("/about", (req, res) =>{
+  const currentUser=req.user;
+  res.render("about", {currentUser, currentPage: "about"} );
+});
+app.get("/workshops", (req, res) =>{
+  const currentUser=req.user;
+  res.render("workshops",{currentUser, currentPage:"workshops"});
+});
+
+// CREATE THREAD
+
+app.get("/create-thread", function (req, res) {
+  if (req.isAuthenticated()) {
+    res.render("create-thread", { currentUser: req.user });
+  } else {
+    req.flash("error", "Please login to create a new thread.");
+    res.redirect("/login");
+  }
+});
+
+app.post("/create-thread", function (req, res) {
+  if (req.isAuthenticated()) {
+    const newThread = new Thread({
+      title: req.body.title,
+      content: req.body.content,
+      author: req.user._id,
+    });
+
+    newThread.save()
+      .then(() => {
+        req.flash("success", "Thread created successfully!");
+        res.redirect("/community"); // Redirect to the community page or threads list
+      })
+      .catch(err => {
+        console.error(err);
+        req.flash("error", "Error creating thread.");
+        res.redirect("/create-thread");
+      });
+  } else {
+    req.flash("error", "Please login to create a new thread.");
+    res.redirect("/login");
+  }
+});
+
+// ... (remaining code)
+
+
+// REGISTER
 
 app.get("/register", function (req, res) {
   res.render("register", { currentUser: req.user });
@@ -100,6 +185,8 @@ app.post("/register", async function (req, res) {
   }
 });
 
+// LOGIN
+
 app.get("/login", function (req, res) {
   res.render("login", { currentUser: req.user });
 });
@@ -110,6 +197,8 @@ app.post("/login", passport.authenticate("local", {
   failureFlash: true,
 }));
 
+// LOGOUT
+
 app.get("/logout", function (req, res) {
   req.logout(function (err) {
     if (err) {
@@ -119,6 +208,8 @@ app.get("/logout", function (req, res) {
     res.redirect('/');
   });
 });
+
+// SUBMIT
 
 app.get("/submit", function (req, res) {
   if (req.isAuthenticated()) {
@@ -167,6 +258,8 @@ app.post("/submit", function (req, res) {
   }
 });
 
+// POSTS
+
 app.get("/posts", async function (req, res) {
   try {
     if (req.isAuthenticated()) {
@@ -188,6 +281,7 @@ app.get("/posts", async function (req, res) {
 });
 
 // EDIT POST
+
 app.get("/edit/:postId", async function (req, res) {
   try {
     if (req.isAuthenticated()) {
@@ -247,6 +341,7 @@ app.post("/edit/:postId", async function (req, res) {
 });
 
 // DELETE POST
+
 app.get("/delete/:postId", async function (req, res) {
   if (req.isAuthenticated()) {
     const postId = req.params.postId;
@@ -273,6 +368,7 @@ app.get("/delete/:postId", async function (req, res) {
 });
 
 // POST route for confirming and deleting post
+
 app.post("/delete/:postId", async function (req, res) {
   if (req.isAuthenticated()) {
     const postId = req.params.postId;

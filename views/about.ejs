@@ -1,0 +1,594 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Postpulse</title>
+  <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon">
+
+
+<%- include('partials/header', { currentPage: 'about' }) %>
+<br><br>
+<style>
+  body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  /* Header Styles */
+  header {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 0;
+  }
+
+  header h1 {
+    margin: 0;
+  }
+
+  /* Section Title Styles */
+  h2 {
+    color: #3498db;
+    margin-bottom: 20px;
+  }
+
+  /* Shared Styles for Sections */
+  .section {
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+  }
+
+  /* About Us Section Styles */
+  .about-section {
+    background-color: #fff;
+    padding: 40px;
+  }
+
+  .about-section p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.8;
+  }
+
+  .about-section a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 30px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .about-section a:hover {
+    background-color: #2980b9;
+  }
+
+  /* FAQ Section Styles */
+  .faq-section,
+  .faq-item,
+  .faq-content {
+    background-color: #fff;
+    color: #333;
+    padding: 20px;
+  }
+
+  .faq-item {
+    cursor: pointer;
+    position: relative;
+    margin-top: 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .faq-item:hover {
+    background-color: #e0e0e0;
+  }
+
+  .faq-item h3 {
+    color: #333;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-item .arrow-icon {
+    font-size: 18px;
+    margin-left: 5px;
+  }
+
+  .faq-content {
+    display: none;
+    font-size: 16px;
+    color: #555;
+  }
+
+  /* Testimonial Carousel Styles */
+  .testimonial-section,
+  .testimonial,
+  .carousel-controls button {
+    background-color: #f8f9fa;
+  }
+
+  .testimonial-section {
+    padding: 40px;
+  }
+
+  .carousel {
+    display: flex;
+    overflow: hidden;
+  }
+
+  .carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .testimonial,
+  .carousel-controls button {
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+
+  .testimonial {
+    width: 100%;
+    margin-right: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+  }
+
+  .carousel-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .carousel-controls button {
+    padding: 10px 20px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .carousel-controls button:hover {
+    background-color: #3498db;
+  }
+
+  /* Team Section Styles */
+  .team-section,
+  .team-member {
+    background-color: #fff;
+    padding: 40px;
+  }
+
+  .team-member {
+    cursor: pointer;
+    position: relative;
+    margin-top: 20px;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .team-member:hover {
+    transform: scale(1.05);
+  }
+
+  /* Interactive Section Placeholder Styles */
+  .interactive-section-placeholder {
+    background-color: #f8f9fa;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .interactive-section-placeholder h2 {
+    color: #3498db;
+    margin-bottom: 20px;
+  }
+
+  .interactive-section-placeholder p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 40px;
+  }
+
+  .interactive-btn {
+    font-size: 18px;
+    padding: 15px 30px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .interactive-btn:hover {
+    background-color: #2980b9;
+  }
+
+  /* Interactive Section Styles */
+  .interactive-section {
+    background-color: #3498db;
+    color: #fff;
+    padding: 60px 0;
+  }
+
+  .interactive-content {
+    text-align: center;
+  }
+
+  .interactive-icon {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  .interactive-feature {
+    margin-bottom: 40px;
+  }
+
+  .interactive-feature h3,
+  .interactive-feature p {
+    color: #fff;
+  }
+  .section {
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+  }
+
+  /* About Us Section Styles */
+  .about-section {
+    background-color: #fff;
+    padding: 40px;
+  }
+
+  .about-section p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.8;
+  }
+
+  .about-section a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 30px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .about-section a:hover {
+    background-color: #2980b9;
+  }
+
+  /* FAQ Section Styles */
+  .faq-section,
+  .faq-item,
+  .faq-content {
+    background-color: #fff;
+    color: #333;
+    padding: 20px;
+  }
+
+  .faq-item {
+    cursor: pointer;
+    position: relative;
+    margin-top: 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .faq-item:hover {
+    background-color: #e0e0e0;
+  }
+
+  .faq-item h3 {
+    color: #333;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-item .arrow-icon {
+    font-size: 18px;
+    margin-left: 5px;
+  }
+
+  .faq-content {
+    display: none;
+    font-size: 16px;
+    color: #555;
+  }
+
+  /* Testimonial Carousel Styles */
+  .testimonial-section,
+  .testimonial,
+  .carousel-controls button {
+    background-color: #f8f9fa;
+  }
+
+  .testimonial-section {
+    padding: 40px;
+  }
+
+  .carousel {
+    display: flex;
+    overflow: hidden;
+  }
+
+  .carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .testimonial,
+  .carousel-controls button {
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+
+  .testimonial {
+    width: 100%;
+    margin-right: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+  }
+
+  .carousel-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .carousel-controls button {
+    padding: 10px 20px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .carousel-controls button:hover {
+    background-color: #3498db;
+  }
+
+  /* Team Section Styles */
+  .team-section,
+  .team-member {
+    background-color: #fff;
+    padding: 40px;
+  }
+
+  .team-member {
+    cursor: pointer;
+    position: relative;
+    margin-top: 20px;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .team-member:hover {
+    transform: scale(1.05);
+  }
+
+  /* Interactive Section Placeholder Styles */
+  .interactive-section-placeholder {
+    background-color: #f8f9fa;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .interactive-section-placeholder h2 {
+    color: #3498db;
+    margin-bottom: 20px;
+  }
+
+  .interactive-section-placeholder p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 40px;
+  }
+
+  .interactive-btn {
+    font-size: 18px;
+    padding: 15px 30px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .interactive-btn:hover {
+    background-color: #2980b9;
+  }
+
+  /* Interactive Section Styles */
+  .interactive-section {
+    background-color: #3498db;
+    color: #fff;
+    padding: 60px 0;
+  }
+
+  .interactive-content {
+    text-align: center;
+  }
+
+  .interactive-icon {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  .interactive-feature {
+    margin-bottom: 40px;
+  }
+
+  .interactive-feature h3,
+  .interactive-feature p {
+    color: #fff;
+  }
+
+</style>
+
+<script>
+  /* JavaScript for FAQ Accordion */
+  function toggleFAQ(index) {
+    var faqContent = document.getElementById('faq-content-' + index);
+    var arrowIcon = document.getElementById('arrow-icon-' + index);
+
+    if (faqContent.style.display === 'block') {
+      faqContent.style.display = 'none';
+      arrowIcon.classList.remove('fa-chevron-up');
+      arrowIcon.classList.add('fa-chevron-down');
+    } else {
+      faqContent.style.display = 'block';
+      arrowIcon.classList.remove('fa-chevron-down');
+      arrowIcon.classList.add('fa-chevron-up');
+    }
+  }
+
+  /* JavaScript for Testimonials Carousel */
+  var testimonialIndex = 0;
+
+  function showTestimonials(index) {
+    var carousel = document.getElementById('testimonial-carousel');
+    testimonialIndex = index;
+    var translateValue = -testimonialIndex * 100 + '%';
+    carousel.style.transform = 'translateX(' + translateValue + ')';
+  }
+
+  function navigateTestimonials(direction) {
+    testimonialIndex += direction;
+    if (testimonialIndex < 0) {
+      testimonialIndex = 0;
+    } else if (testimonialIndex >= document.getElementsByClassName('testimonial').length) {
+      testimonialIndex = document.getElementsByClassName('testimonial').length - 1;
+    }
+    showTestimonials(testimonialIndex);
+  }
+</script>
+
+<div class="container">
+
+  <!-- About Us Section -->
+  <div class="about-section section">
+    <h2>Welcome to Post Pulse</h2>
+    <p>Embark on a journey of creativity and connection. Post Pulse is not just a platform; it's a vibrant community where imagination knows no bounds.</p>
+    <a href="/register" class="btn btn-primary">Get Started</a>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="faq-section section">
+    <h2>Discover More</h2>
+    <div class="faq-item" onclick="toggleFAQ(1)">
+      <h3>What is Post Pulse?<i id="arrow-icon-1" class="fas fa-chevron-down arrow-icon"></i></h3>
+      <div id="faq-content-1" class="faq-content">
+        <p>Post Pulse is a creative platform that connects visionaries from diverse fields, fostering collaboration and limitless possibilities.</p>
+      </div>
+    </div>
+    <div class="faq-item" onclick="toggleFAQ(2)">
+      <h3>Is there a cost to join challenges?<i id="arrow-icon-2" class="fas fa-chevron-down arrow-icon"></i></h3>
+      <div id="faq-content-2" class="faq-content">
+        <p>No, joining challenges is absolutely free for registered users, enabling everyone to participate in the creative journey.</p>
+      </div>
+    </div>
+    <div class="faq-item" onclick="toggleFAQ(3)">
+      <h3>Can I collaborate with other users?
+        <i id="arrow-icon-3" class="fas fa-chevron-down arrow-icon"></i>
+    </h3>
+      <div id="faq-content-3" class="faq-content">
+        <p>Absolutely! Post Pulse celebrates collaboration. Dive into the Collaborations section to connect with like-minded creators.</p>
+      </div>
+    </div>
+    <!-- Add more FAQ items as needed -->
+  </div>
+
+  <!-- Testimonial Carousel -->
+  <div class="testimonial-section section">
+    <h2>What Our Community Says</h2>
+    <div class="carousel" id="testimonial-carousel">
+      <div class="carousel-inner">
+        <div class="testimonial">
+          <blockquote>
+            "Post Pulse has been a transformative experience. I've connected with brilliant minds and expanded my creative boundaries."
+          </blockquote>
+          <cite>- Hamisi Hassan, Founder</cite>
+        </div>
+        <div class="testimonial">
+          <blockquote>
+            "The interactive workshops have been a treasure trove of knowledge. Highly recommended for anyone looking to level up their skills!"
+          </blockquote>
+          <cite>- Anonymous, Graphic Designer</cite>
+        </div>
+        <!-- Add more testimonials as needed -->
+      </div>
+    </div>
+    
+  </div>
+
+  <!-- Team Section -->
+  <div class="team-section section">
+    <h2>Meet Our Visionaries</h2>
+    <div class="team-member">
+      <h3>Hamisi Hassan</h3>
+      <p>Founder & Creative Director</p>
+    </div>
+    <div class="team-member">
+      <h3>Hassan Hamisi</h3>
+      <p>Lead Designer</p>
+    </div>
+    <!-- Add more team members as needed -->
+  </div>
+
+ <!-- ... Previous Code ... -->
+
+<!-- Interactive Sections -->
+<div class="row">
+    <!-- Interactive Feature 1 -->
+    <div class="col-md-6 mb-4">
+      <div class="interactive-section-placeholder section">
+        <h2>Express Yourself <i class="fas  fa-chalkboard-teacher interactive-icon"></i></h2>
+        <p>Engage with exciting interactive features and unleash your creativity with innovative canvas tools. Your imagination is the only limit.</p>
+        <a href="https://creativecanvas.org/" target="_blank" class="btn btn-primary interactive-btn">Try Creative Canvas</a>
+      </div>
+    </div>
+  
+    <!-- Interactive Feature 2 -->
+    <div class="col-md-6 mb-4">
+      <div class="interactive-section-placeholder section">
+        <h2>Learn and Grow <i class="fas  fa-lightbulb interactive-icon"></i></h2>
+        <p>Immerse yourself in dynamic workshops led by industry experts. Elevate your creative skills and stay ahead in the ever-evolving world of creativity.</p>
+        <a href="/workshops" class="btn btn-primary interactive-btn">Join Workshops</a>
+      </div>
+    </div>
+  
+    <!-- Add more interactive features as needed -->
+  </div>
+  
+  <!-- Interactive Section 3 -->
+  <div class="interactive-section-placeholder section">
+    <h2>Collaborate for Impact <i class="fas fa-users interactive-icon"></i></h2>
+    <p>Connect with like-minded creators for innovative and impactful projects. Collaboration fuels inspiration, and together, we amplify our creative impact.</p>
+    <a href="/collaborations" class="btn btn-primary interactive-btn">Start Collaborating</a>
+  </div>
+  </div>
+  

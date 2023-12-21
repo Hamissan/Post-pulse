@@ -1,0 +1,256 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Postpulse</title>
+  <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon">
+
+
+
+
+<%- include('partials/header', { currentPage: 'rewards' }) %>
+
+<style>
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    background-color: #343a40;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+  }
+
+  .rewards-section {
+    padding: 30px 0;
+    background-color: #f8f9fa;
+  }
+
+  .container {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .rewards-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+  }
+
+  .rewards-title::before,
+  .rewards-title::after {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 5px;
+    background-color: #3498db;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .rewards-title::before {
+    left: -5px;
+  }
+
+  .rewards-title::after {
+    right: -5px;
+  }
+
+  .reward-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .reward-icon,
+  .post-icon,
+  .achievements-icon,
+  .additional-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    background-color: #3498db;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 24px;
+  }
+
+  .reward-description,
+  .post-section h3,
+  .achievements-section h3,
+  .additional-section h3 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .reward-points {
+    color: #2ecc71;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .user-score,
+  .bonus-eligibility,
+  .progress-section,
+  .post-section,
+  .achievements-section,
+  .additional-section {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #eee;
+    border-radius: 10px;
+    margin: 20px 0;
+    position: relative;
+  }
+
+  .progress-half-fill {
+    height: 100%;
+    border-radius: 10px;
+    background-color: #2ecc71;
+    width: 50%;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 30px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    .reward-item {
+      flex-direction: row;
+    }
+    .reward-description {
+      text-align: left;
+      margin-left: 20px;
+    }
+    .progress-bar {
+      width: 60%;
+      margin: 20px auto;
+    }
+  }
+
+  /* New Styles for Post Section, Achievements Section, and Additional Section */
+  .post-section,
+  .achievements-section,
+  .additional-section {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .post-section h3,
+  .achievements-section h3,
+  .additional-section h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+</style>
+
+<body>
+  <header>
+    <h1>Your Rewards</h1>
+  </header>
+
+  <div class="rewards-section">
+    <div class="container">
+      <h2 class="rewards-title">Rewards</h2>
+
+      <!-- User Score Section -->
+      <div class="user-score">
+        <p>Your Current Score: <span class="reward-points">200 points</span></p>
+      </div>
+
+      <!-- Bonus Eligibility Section -->
+      <div class="bonus-eligibility">
+        <p>Eligibility for Bonus Rewards: <span class="reward-points">High</span></p>
+      </div>
+
+      <!-- Progress Section -->
+      <div class="progress-section">
+        <p>Your Progress Towards Next Reward:</p>
+        <div class="progress-bar">
+          <div class="progress-half-fill"></div>
+        </div>
+      </div>
+
+      <!-- Answering Questions Reward Item -->
+      <div class="reward-item">
+        <div class="reward-icon"><i class="fas fa-lightbulb"></i></div>
+        <div class="reward-description">
+          <h4>Answering Questions</h4>
+          <p>Share your knowledge and earn points by answering questions from the community.</p>
+        </div>
+        <div class="reward-points">+50 points</div>
+      </div>
+
+      <!-- Rating Posts Reward Item -->
+      <div class="reward-item">
+        <div class="reward-icon"><i class="fas fa-star"></i></div>
+        <div class="reward-description">
+          <h4>Rating Posts</h4>
+          <p>Help us maintain quality content by rating posts. Your feedback matters!</p>
+        </div>
+        <div class="reward-points">+30 points</div>
+      </div>
+
+      <!-- Additional Section for Placeholder Content
+      <div class="additional-section">
+        <div class="additional-icon"><i class="fas fa-plus"></i></div>
+        <h3>Additional Section</h3>
+        <p>This is a placeholder for additional content. Customize as needed.</p>
+        <a href="#" class="cta-button">Explore More</a>
+      </div> -->
+
+      <!-- Post Section for Writers -->
+      <div class="post-section">
+        <div class="post-icon"><i class="fas fa-feather"></i></div>
+        <h3>Write and Share</h3>
+        <p>As a writer, you can earn additional rewards by creating and sharing valuable posts with the community.</p>
+        <a href="#" class="cta-button">Start Writing</a>
+      </div>
+
+      <!-- Achievements Section -->
+      <div class="achievements-section">
+        <div class="achievements-icon"><i class="fas fa-trophy"></i></div>
+        <h3>Your Achievements</h3>
+        <p>Explore your achievements and milestones on your journey to becoming a top contributor.</p>
+        <a href="#" class="cta-button">View Achievements</a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+</body>
+</html>

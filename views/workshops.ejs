@@ -1,0 +1,223 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postpulse</title>
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon">
+  
+
+
+
+<%- include('partials/header', { currentPage: 'workshops' }) %>
+<br><br>
+
+<style>
+  .section-title {
+    color: #3498db;
+    margin-bottom: 20px;
+  }
+
+  .filter-options {
+    margin-bottom: 20px;
+  }
+
+  .filter-label {
+    margin-right: 10px;
+  }
+
+  .filter-select {
+    padding: 8px;
+  }
+
+  .workshop {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .workshop-title {
+    color: #3498db;
+    margin-bottom: 10px;
+  }
+
+  .workshop-info {
+    color: #555;
+    margin-bottom: 8px;
+  }
+
+  .info-label {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+
+  .workshop-description {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 15px;
+  }
+
+  .register-btn {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .register-btn:hover {
+    background-color: #2980b9;
+  }
+
+  .details-btn {
+    background-color: #fff;
+    color: #3498db;
+    border: 1px solid #3498db;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+
+  .details-btn:hover {
+    background-color: #3498db;
+    color: #fff;
+  }
+</style>
+
+<div class="container">
+  <h2 class="section-title">Upcoming Workshops</h2>
+
+  <!-- Filter Options -->
+  <div class="filter-options">
+    <label for="category-filter" class="filter-label">Filter by Category:</label>
+    <select id="category-filter" class="filter-select">
+      <option value="all">All Categories</option>
+      <option value="design">Design</option>
+      <option value="coding">Coding</option>
+      <!-- Add more categories as needed -->
+    </select>
+  </div>
+
+  <!-- Workshop List -->
+  <div class="workshop-list">
+    <!-- Workshop 1 -->
+    <div class="workshop" data-category="design">
+      <h3 class="workshop-title">Design Thinking Masterclass</h3>
+      <p class="workshop-info"><span class="info-label">Date:</span> March 15, 2023 | <span class="info-label">Time:</span> 10:00 AM - 1:00 PM</p>
+      <p class="workshop-info"><span class="info-label">Location:</span> Anonymous</p>
+      <p class="workshop-description">
+        Join us for an immersive workshop on design thinking. Learn the principles and practices that drive innovation.
+      </p>
+      <button class="btn btn-primary register-btn">Register</button>
+      <button class="btn btn-secondary details-btn" onclick="showDetails('Design Thinking Masterclass')">Details</button>
+    </div>
+
+    <!-- Workshop 2 -->
+    <div class="workshop" data-category="coding">
+      <h3 class="workshop-title">JavaScript Workshop Series</h3>
+      <p class="workshop-info"><span class="info-label">Date:</span> March 22-24, 2023 | <span class="info-label">Time:</span> 6:00 PM - 8:00 PM</p>
+      <p class="workshop-info"><span class="info-label">Location:</span> Anonymous</p>
+      <p class="workshop-description">
+        Dive deep into JavaScript with our comprehensive workshop series. Perfect for beginners and intermediate developers.
+      </p>
+      <button class="btn btn-primary register-btn">Register</button>
+      <button class="btn btn-secondary details-btn" onclick="showDetails('JavaScript Workshop Series')">Details</button>
+    </div>
+
+    <!-- Add more workshops as needed -->
+
+  </div>
+
+  <!-- Featured Workshops Section -->
+  <h2 class="section-title">Featured Workshops</h2>
+  <div class="featured-workshops">
+    <!-- Featured Workshop 1 -->
+    <div class="workshop" data-category="design">
+      <h3 class="workshop-title">Creative Typography Workshop</h3>
+      <p class="workshop-info"><span class="info-label">Date:</span> March 18, 2023 | <span class="info-label">Time:</span> 2:00 PM - 4:00 PM</p>
+      <p class="workshop-info"><span class="info-label">Location:</span> Anonymous</p>
+      <p class="workshop-description">
+        Explore the art of creative typography in this hands-on workshop. Bring your ideas to life through innovative lettering techniques.
+      </p>
+      <button class="btn btn-primary register-btn">Register</button>
+      <button class="btn btn-secondary details-btn" onclick="showDetails('Creative Typography Workshop')">Details</button>
+    </div>
+
+    <!-- Featured Workshop 2 -->
+    <div class="workshop" data-category="coding">
+      <h3 class="workshop-title">Advanced Web Development Bootcamp</h3>
+      <p class="workshop-info"><span class="info-label">Date:</span> March 25-27, 2023 | <span class="info-label">Time:</span> 10:00 AM - 3:00 PM</p>
+      <p class="workshop-info"><span class="info-label">Location:</span> Anonymous</p>
+      <p class="workshop-description">
+        Take your web development skills to the next level with our advanced bootcamp. Learn from industry experts and elevate your projects.
+      </p>
+      <button class="btn btn-primary register-btn">Register</button>
+      <button class="btn btn-secondary details-btn" onclick="showDetails('Advanced Web Development Bootcamp')">Details</button>
+    </div>
+
+    <!-- Add more featured workshops as needed -->
+
+  </div>
+
+  <!-- Workshop Schedule Section -->
+  <h2 class="section-title">Workshop Schedule</h2>
+  <div class="workshop-schedule">
+    <!-- Schedule Item 1 -->
+    <div class="schedule-item">
+      <h3 class="workshop-title">Digital Marketing Essentials</h3>
+      <p class="workshop-info"><span class="info-label">Date:</span> March 30, 2023 | <span class="info-label">Time:</span> 3:00 PM - 5:00 PM</p>
+      <p class="workshop-info"><span class="info-label">Location:</span> Anonymous</p>
+      <p class="workshop-description">
+        Learn the essential principles of digital marketing and discover strategies to boost your online presence.
+      </p>
+      <button class="btn btn-primary register-btn">Register</button>
+      <button class="btn btn-secondary details-btn" onclick="showDetails('Digital Marketing Essentials')">Details</button>
+    </div><br>
+
+    <!-- Schedule Item 2 -->
+    <div class="schedule-item">
+      <h3 class="workshop-title">UI/UX Design Trends 2023</h3>
+      <p class="workshop-info"><span class="info-label">Date:</span> April 5, 2023 | <span class="info-label">Time:</span> 1:00 PM - 4:00 PM</p>
+      <p class="workshop-info"><span class="info-label">Location:</span> Anonymous</p>
+      <p class="workshop-description">
+        Stay ahead of the curve with the latest UI/UX design trends. Explore innovative concepts and practical applications.
+      </p>
+      <button class="btn btn-primary register-btn">Register</button>
+      <button class="btn btn-secondary details-btn" onclick="showDetails('UI/UX Design Trends 2023')">Details</button>
+    </div>
+
+    <!-- Add more schedule items as needed -->
+
+  </div>
+</div>
+
+<script>
+  // Add JavaScript for filtering workshops based on category
+  document.getElementById('category-filter').addEventListener('change', function () {
+    const selectedCategory = this.value;
+    const workshops = document.querySelectorAll('.workshop');
+
+    workshops.forEach((workshop) => {
+      const workshopCategory = workshop.getAttribute('data-category');
+
+      if (selectedCategory === 'all' || workshopCategory === selectedCategory) {
+        workshop.style.display = 'block';
+      } else {
+        workshop.style.display = 'none';
+      }
+    });
+  });
+
+  // Function to show workshop details (replace with your implementation)
+  function showDetails(workshopTitle) {
+    alert(`Details for "${workshopTitle}" will be displayed here.`);
+    // You can replace the alert with a modal or expand the workshop section to show details
+  }
+</script><br><br>
+
+<%- include('partials/footer') %>
