@@ -1,0 +1,19 @@
+<!-- views/edit-profile.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Profile</title>
+</head>
+<body>
+  <h1>Edit Profile</h1>
+  <form action="/profile/edit" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" value="<%= currentUser.username %>">
+    <br>
+    <label for="bio">Bio:</label>
+    <textarea id="bio" name="bio"><%= currentUser.bio %></textarea>
+    <br>
+    <button type="submit">Update Profile</button>
+  </form>
+</body>
+</html>

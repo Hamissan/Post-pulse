@@ -1,0 +1,16 @@
+<!-- views/notifications.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Notifications</title>
+</head>
+<body>
+  <h1>Notifications</h1>
+  <ul>
+    <% notifications.forEach(notification => { %>
+      <li><%= notification.content %> - <%= notification.date.toLocaleString() %></li>
+    <% }); %>
+  </ul>
+  <a href="/posts">Back to Posts</a>
+</body>
+</html>

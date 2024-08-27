@@ -4,11 +4,10 @@
 
 <div class="container mt-5">
   <h1 class="mb-4">Confirm Delete</h1>
-  <p>Are you sure you want to delete the post?</p>
+  <p>Are you sure you want to delete the post titled "<%= post.title %>"?</p>
   <form method="post" action="/delete/<%= post._id %>">
     <button type="submit" class="btn btn-danger">Delete</button>
     <a href="/posts" class="btn btn-outline-primary">Cancel</a>
   </form>
 </div>
-
 

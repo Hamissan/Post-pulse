@@ -1,135 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Postpulse</title>
   <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
   <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <%- include('partials/header', { currentPage: 'posts' }) %>
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
 
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      box-sizing: border-box;
+    }
 
+    .display-4 {
+      color: #333333;
+      font-size: 2.2rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
+    .lead {
+      color: #555555;
+      font-size: 1.1rem;
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
+    /* Post Card Styles */
+    .post-card {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.05);
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: box-shadow 0.2s ease-in-out;
+    }
 
-<%- include('partials/header', { currentPage: 'posts' }) %>
-<style>
-  /* Style for the "Write a Post" button */
-  .btn-write-post {
-    background-color: #3498db; 
-    color: #fff;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
-  }
+    .post-card:hover {
+      box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.08);
+    }
 
-  .btn-write-post:hover {
-    background-color: #2979c7; /* Adjusted bluish shade on hover */
-    transform: scale(1.05);
-  }
+    .card-title {
+      color: #1d1f23;
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
 
-  /* Style for the "Edit" and "Delete" buttons */
-  .btn-edit,
-  .btn-delete {
-    margin-right: -5px;
-    padding: 10px 20px;
-    font-size: 14px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
-  }
+    .card-text {
+      color: #606770;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
 
-  .btn-edit {
-    background-color: #28a745; /* Green color for Edit button */
-    color: #fff;
-    border: none;
-  }
+    .card-meta {
+      font-size: 0.9rem;
+      color: #90949c;
+      margin-bottom: 15px;
+    }
 
-  .btn-delete {
-    background-color: #dc3545; /* Red color for Delete button */
-    color: #fff;
-    border: none;
-  }
+    /* Button Styles */
+    .btn {
+      border: none;
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: background-color 0.2s ease-in-out;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-  /* Hover effect for Edit and Delete buttons */
-  .btn-edit:hover,
-  .btn-delete:hover {
-    transform: scale(1.05);
-  }
+    .btn-primary {
+      background-color: #1d9bf0;
+      color: #ffffff;
+    }
 
-  /* Additional styling for post cards and container */
-  .container {
-    margin-top: 50px;
-  }
+    .btn-primary:hover {
+      background-color: #1a8cd8;
+    }
 
-  .display-4 {
-    color: #3498db;
-  }
+    .btn-outline-primary {
+      background-color: transparent;
+      color: #1d9bf0;
+      border: 2px solid #1d9bf0;
+    }
 
-  .lead {
-    color: #666;
-  }
+    .btn-outline-primary:hover {
+      background-color: #1d9bf0;
+      color: #ffffff;
+    }
 
-  .post-button {
-    margin-top: 20px;
-  }
+    .like-button {
+      background: none;
+      border: none;
+      color: #666;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      margin-right: 15px;
+    }
 
-  .post-card {
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  }
+    .like-button.liked {
+      color: red; /* Heart color when liked */
+    }
 
-  .card-title {
-    color: #3498db;
-  }
+    .like-count {
+      margin-left: 8px;
+      font-size: 16px;
+    }
 
-  .btn-info,
-  .btn-danger {
-    color: #fff;
-  }
-  /* Adjusted positioning for Edit and Delete buttons */
-  .btn-edit,
-  .btn-delete {
-    margin-right: -5px; /* Negative margin */}
-    .btn-like {
-    background-color: #e74c3c;
-    color: #fff;
-    border: none;
-  }
+    .like-button:hover {
+      color: #333; /* Heart color on hover */
+    }
 
-  .btn-like:hover {
-    background-color: #c0392b;
-  }
-</style>
+    .btn-edit {
+      background-color: #2ecc71;
+      color: #ffffff;
+    }
 
-<div class="container">
-  <h1 class="display-4 text-center mb-4">Explore Posts</h1>
+    .btn-edit:hover {
+      background-color: #27ae60;
+    }
 
-  <% if (currentUser && currentUser.username) { %>
-    <p class="lead text-center">Welcome, <%= currentUser.username %>! Ready to share your thoughts?</p>
-    <a href="/submit" class="btn btn-primary btn-lg d-block mx-auto post-button btn-write-post">Write a Post</a>
-    <hr class="my-4">
-  <% } else { %>
-    <p class="lead text-center">Discover a world of ideas and insights shared by our community.</p>
-  <% } %>
+    .btn-delete {
+      background-color: #ff4757;
+      color: #ffffff;
+      margin-left: 10px;
+    }
 
-  <% if (posts.length > 0) { %>
-    <% posts.forEach(function(post) { %>
-      <div class="card mb-4 post-card">
-        <div class="card-body">
-          <h5 class="card-title mb-3"><%= post.title %></h5>
-          <p class="card-text mb-4"><%= post.content %></p>
-          <p class="card-text text-muted small">Author: <%= post.author.username %></p>
-          <p class="card-text text-muted small">Posted on: <%= post.date.toLocaleString() %></p>
-          <div class="text-left">
-            <a href="/edit/<%= post._id %>" class="btn btn-info btn-sm mx-2 btn-edit"><i class="fas fa-edit"></i> Edit</a>
-            <a href="/delete/<%= post._id %>" class="btn btn-danger btn-sm mx-2 btn-delete"><i class="fas fa-trash-alt"></i> Delete</a>
-          
+    .btn-delete:hover {
+      background-color: #e84118;
+    }
+
+    /* Comment Section */
+    .comment-section {
+      margin-top: 20px;
+    }
+
+    .comment {
+      background-color: #f0f2f5;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .comment-author {
+      font-weight: 600;
+      color: #333333;
+    }
+
+    .comment-content {
+      margin-top: 5px;
+      font-size: 1rem;
+      color: #555555;
+    }
+
+    .comment-time {
+      font-size: 0.85rem;
+      color: #90949c;
+      margin-top: 10px;
+    }
+
+    .comments-hidden {
+      display: none;
+    }
+
+    .show-comments-button {
+      background: none;
+      border: none;
+      color: #1d9bf0;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .show-comments-button:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .display-4 {
+        font-size: 1.8rem;
+      }
+
+      .lead {
+        font-size: 1rem;
+      }
+
+      .card-title {
+        font-size: 1.3rem;
+      }
+
+      .card-text {
+        font-size: 0.9rem;
+      }
+
+      .btn {
+        font-size: 0.8rem;
+        padding: 8px 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .display-4 {
+        font-size: 1.5rem;
+      }
+
+      .lead {
+        font-size: 0.9rem;
+      }
+
+      .card-title {
+        font-size: 1.2rem;
+      }
+
+      .card-text {
+        font-size: 0.85rem;
+      }
+
+      .btn {
+        font-size: 0.75rem;
+        padding: 7px 12px;
+      }
+
+      .btn-like,
+      .btn-delete {
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="display-4 text-center mb-4">Explore Posts</h1>
+
+    <% if (currentUser && currentUser.username) { %>
+      <p class="lead text-center">Welcome, <%= currentUser.username %>! Ready to share your thoughts?</p>
+      <a href="/submit" class="btn btn-primary btn-lg d-block mx-auto post-button btn-write-post">Write a Post</a>
+      <hr class="my-4">
+    <% } else { %>
+      <p class="lead text-center">Discover a world of ideas and insights shared by our community.</p>
+    <% } %>
+
+    <% if (posts.length > 0) { %>
+      <% posts.forEach(function(post) { %>
+        <div class="card mb-4 post-card">
+          <div class="card-body">
+            <h5 class="card-title mb-3"><%= post.title %></h5>
+            <p class="card-text mb-4"><%= post.content %></p>
+            <p class="card-meta text-muted small">Author: <%= post.author.username %></p>
+            <p class="card-meta text-muted small">Posted on: <%= new Date(post.date).toLocaleString() %></p>
+
+            <!-- Likes and Actions -->
+            <div class="d-flex align-items-center mb-3">
+              <form action="/like/<%= post._id %>" method="POST" class="like-form">
+                <button type="submit" class="like-button <%= post.likes.includes(currentUser._id) ? 'liked' : '' %>">
+                  <i class="fas fa-heart"></i>
+                  <span class="like-count"><%= post.likes.length %></span>
+                </button>
+              </form>
+
+              <% if (currentUser && post.author._id.equals(currentUser._id)) { %>
+                <a href="/edit/<%= post._id %>" class="btn btn-info btn-sm mx-2 btn-edit"><i class="fas fa-edit"></i> Edit</a>
+                <a href="/confirm-delete/<%= post._id %>" class="btn btn-danger btn-sm mx-2 btn-delete"><i class="fas fa-trash-alt"></i> Delete</a>
+              <% } %>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-hidden" id="comments-<%= post._id %>">
+              <% post.comments.forEach(function(comment) { %>
+                <div class="comment">
+                  <% if (comment.author) { %>
+                    <p class="comment-author"><%= comment.author.username %></p>
+                  <% } else { %>
+                    <p class="comment-author">Unknown User</p>
+                  <% } %>
+                  <p class="comment-content"><%= comment.content %></p>
+                  <p class="comment-time text-muted small"><%= new Date(comment.date).toLocaleString() %></p>
+                </div>
+              <% }) %>
+
+              <% if (currentUser && currentUser.username) { %>
+                <form action="/comments/<%= post._id %>" method="POST" class="mt-3">
+                  <div class="form-group">
+                    <label for="comment">Add a comment:</label>
+                    <textarea class="form-control" id="comment" name="comment" rows="2" required></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-sm mt-2">Submit Comment</button>
+                </form>
+              <% } else { %>
+                <p class="text-muted small">You need to be logged in to comment.</p>
+              <% } %>
+
+            </div>
+            <button class="show-comments-button" data-post-id="<%= post._id %>">Show Comments</button>
           </div>
         </div>
-      </div>
-    <% }); %>
-  <% } else { %>
-    <p class="text-center">No posts yet.</p>
-  <% } %>
-</div>
+      <% }); %>
+    <% } else { %>
+      <p class="lead text-center">No posts to show. Be the first to share something!</p>
+    <% } %>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.like-form').forEach(form => {
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+          const form = event.target;
+          const button = form.querySelector('.like-button');
+          const countSpan = form.querySelector('.like-count');
+  
+          fetch(form.action, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: new URLSearchParams(new FormData(form)).toString()
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              button.classList.toggle('liked');
+              countSpan.textContent = data.newLikeCount;
+            } else {
+              alert('Error liking the post.');
+            }
+          })
+          .catch(err => {
+            console.error('Error:', err);
+          });
+        });
+      });
+
+      document.querySelectorAll('.show-comments-button').forEach(button => {
+        button.addEventListener('click', function () {
+          const postId = button.getAttribute('data-post-id');
+          const commentsSection = document.getElementById('comments-' + postId);
+          commentsSection.classList.toggle('comments-hidden');
+          button.textContent = commentsSection.classList.contains('comments-hidden') ? 'Show Comments' : 'Hide Comments';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

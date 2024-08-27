@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "body-parser": "^1.20.2",
+    "bson": "^6.8.0",
     "crypto-random-string": "^5.0.0",
     "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
@@ -8,7 +9,7 @@
     "express-flash": "^0.0.2",
     "express-session": "^1.17.3",
     "helmet": "^7.1.0",
-    "mongoose": "^8.0.3",
+    "mongoose": "^8.5.3",
     "mongoose-findorcreate": "^4.0.0",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",

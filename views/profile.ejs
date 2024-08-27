@@ -1,0 +1,32 @@
+<!-- views/profile.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= user.username %>'s Profile</title>
+</head>
+<body>
+  <h1><%= user.username %>'s Profile</h1>
+  <p><%= user.bio %></p>
+  <h2>Posts</h2>
+  <% user.posts.forEach(post => { %>
+    <div>
+      <h3><%= post.title %></h3>
+      <p><%= post.content %></p>
+    </div>
+  <% }); %>
+  <% if (currentUser && currentUser._id.equals(user._id)) { %>
+    <a href="/profile/edit">Edit Profile</a>
+  <% } %>
+  <!-- Add to profile.ejs -->
+<% if (currentUser && !currentUser._id.equals(user._id)) { %>
+    <form action="/follow/<%= user._id %>" method="POST">
+      <% if (currentUser.following.includes(user._id)) { %>
+        <button type="submit">Unfollow</button>
+      <% } else { %>
+        <button type="submit">Follow</button>
+      <% } %>
+    </form>
+  <% } %>
+  
+</body>
+</html>
